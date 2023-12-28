@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:24:02 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/26 14:03:54 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:33:32 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ stack_list	*create_node(char *value, int index);
 
 int	is_ordered(stack_list **stack);
 
-stack_list	*find_last_node(stack_list *stack);
-
-stack_list	*find_second_last_node(stack_list *stack);
-
 void	swap(stack_list **stack);
 
 void	push(stack_list **stack1, stack_list **stack2);
@@ -62,9 +58,10 @@ void	solve_small(stack_list **stack_a, stack_list **stack_b, int len);
 
 void	solve_three(stack_list **stack_a);
 
-int	find_smallest_num(stack_list *stack);
+int	find_lowest_num(stack_list *stack);
 
 void	change_index(stack_list *stack, char add_sub);
 
-//stack_list	*find_node(stack_list *stack, int index);
+stack_list	*find_node(stack_list *stack, int index);
+
 #endif

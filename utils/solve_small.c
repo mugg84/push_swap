@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:27:55 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/26 13:26:01 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:21:51 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,19 @@ void	solve_small(stack_list **stack_a, stack_list **stack_b, int len)
 
 void	solve_three(stack_list **stack_a)
 {
-	printf("waitforit");
+	int	first;
+	int	second;
+	int	third;
+
+	while (!is_ordered(stack_a))
+	{
+
+		first = (find_node(*stack_a, 0)->value);
+		second = (find_node(*stack_a, 1)->value);
+		third = (find_node(*stack_a, 2)->value);
+		if ((first > second && second < third) || (first > second && second > third))
+			swap(stack_a);
+		else
+			rev_rotate(stack_a);
+	}
 }

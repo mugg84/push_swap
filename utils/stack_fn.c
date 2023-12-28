@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:26:29 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/26 14:04:01 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/28 13:57:17 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,44 +87,11 @@ void	push(stack_list **stack1, stack_list **stack2)
 		*stack1 = (*stack1)->next;
 	else
 		*stack1 = NULL;
+	change_index(*stack2, '+');
 	temp->next = *stack2;
 	*stack2 = temp;
+	change_index(*stack1, '-');
 }
-//index function
-// void	rotate(stack_list **stack)
-// {
-// 	stack_list	*head;
-// 	stack_list	*last;
-// 	stack_list	*temp;
-// 	int	len;
-
-// 	len = stack_len(*stack);
-// 	head = *stack;
-// 	last = find_node(*stack, len - 1);
-// 	if (!head || !last || head == last)
-// 		return ;
-// 	temp = *stack;
-// 	*stack = head->next;
-// 	last->next = temp;
-// 	temp->next = NULL;
-// }
-
-// void	rev_rotate(stack_list **stack)
-// {
-// 	stack_list	*second_last;
-// 	stack_list	*last;
-// 	stack_list	*temp;
-// 	int	len;
-
-// 	second_last = find_node(*stack, len - 2);
-// 	last = find_node(*stack, len - 1);
-// 	if (!second_last || !last || second_last == last)
-// 		return ;
-// 	temp = *stack;
-// 	*stack = last;
-// 	(*stack)->next = temp;
-// 	second_last->next = NULL;
-// }
 
 void	rotate(stack_list **stack)
 {
@@ -135,7 +102,7 @@ void	rotate(stack_list **stack)
 
 	head = *stack;
 	len = stack_len(*stack);
-	last = find_last_node(*stack);
+	last = find_node(*stack, len - 1);
 	if (!head || !last || head == last)
 		return ;
 	temp = *stack;
@@ -143,6 +110,7 @@ void	rotate(stack_list **stack)
 	last->next = temp;
 	temp->next = NULL;
 	change_index(*stack, '-');
+	last = find_node(*stack, len - 1);
 	last->index = len - 1;
 }
 
@@ -154,13 +122,14 @@ void	rev_rotate(stack_list **stack)
 	int	len;
 
 	len = stack_len(*stack);
-	second_last = find_second_last_node(*stack);
-	last = find_last_node(*stack);
+	second_last = find_node(*stack, len - 2);
+	last = find_node(*stack, len - 1);
 	if (!second_last || !last || second_last == last)
 		return ;
 	temp = *stack;
 	*stack = last;
 	(*stack)->next = temp;
 	second_last->next = NULL;
-
+	change_index(*stack, '+');
+	(*stack)->index = 0;
 }

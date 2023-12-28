@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:23:54 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/26 13:54:20 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:17:43 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,8 @@ int	main(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (0);
 	create_stack(&stack_a, argc, argv);
-	// change_index(stack_a, '-');
-	// while (!is_ordered(&stack_a))
-	// 	solve_stack(&stack_a, &stack_b);
-	int i = 0;
-	//int a = find_smallest_num(stack_a);
-	//printf("%i/n", a);
-	// push(&stack_a, &stack_b);
-	// printf("a_head: %i, b_head: %i\n", stack_a->value, stack_b->value);
-	// push(&stack_a, &stack_b);
-	// printf("a_head: %i, b_head: %i\n", stack_a->value, stack_b->value);
-	// push(&stack_a, &stack_b);
-	// printf("a_head: %i, b_head: %i\n", stack_a->value, stack_b->value);
-	// push(&stack_a, &stack_b);
-	// printf("b_head: %i\n", stack_b->value);
-	//printf("in order");
-	//free_stack(&stack_a);
-	//free_stack(&stack_b);
-	// printf("head: %i, last: %i\n", stack_a->value, (find_last_node(stack_a)->value));
-	// rotate(&stack_a);
-	// printf("head: %i, last: %i\n", stack_a->value, (find_last_node(stack_a)->value));
-	// printf("head: %i, last: %i\n", stack_a->value, (find_last_node(stack_a)->value));
-	// rev_rotate(&stack_a);
-	// printf("head: %i, last: %i\n", stack_a->value, (find_last_node(stack_a)->value));
-	while (!is_ordered(&stack_a))
-	{
-		rotate(&stack_a);
-		printf("rotated %d\n", i++);
-	}
+	if (!is_ordered(&stack_a))
+			solve_stack(&stack_a, &stack_b);
 	loop(stack_a);
-	// while (!is_ordered(&stack_a))
-	// {
-	// 	rev_rotate(&stack_a);
-	// 	printf("rotated %d\n", i++);
-	// }
 	return (0);
 }
