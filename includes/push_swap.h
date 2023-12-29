@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:24:02 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/28 14:33:32 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/29 11:12:43 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ int	find_lowest_num(stack_list *stack);
 void	change_index(stack_list *stack, char add_sub);
 
 stack_list	*find_node(stack_list *stack, int index);
+
+void	solve_four_five(stack_list **stack_a, stack_list **stack_b, int len);
 
 #endif

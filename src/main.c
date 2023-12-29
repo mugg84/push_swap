@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:23:54 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/28 15:17:43 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/29 11:17:17 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(int argc, char **argv)
 	create_stack(&stack_a, argc, argv);
 	if (!is_ordered(&stack_a))
 			solve_stack(&stack_a, &stack_b);
-	loop(stack_a);
+	//loop(stack_a);
 	return (0);
 }
