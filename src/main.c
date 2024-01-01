@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:23:54 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/29 11:17:17 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/01 16:58:48 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	solve_stack(stack_list **stack_a, stack_list **stack_b)
 	len = stack_len(*stack_a);
 	if (len <= 5)
 		solve_small(stack_a, stack_b, len);
+	else
+		solve_big(stack_a, stack_b, len);
 }
 
 void	loop(stack_list *a)
@@ -38,8 +40,21 @@ int	main(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (0);
 	create_stack(&stack_a, argc, argv);
-	if (!is_ordered(&stack_a))
-			solve_stack(&stack_a, &stack_b);
-	//loop(stack_a);
+	// if (!is_ascending(&stack_a))
+	// 		solve_stack(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	//solve_stack(&stack_a, &stack_b);
+	calc_cost(stack_a, stack_b);
+	printf("stack_a\n");
+	loop(stack_a);
+	printf("stack_b\n");
+	loop(stack_b);
 	return (0);
 }

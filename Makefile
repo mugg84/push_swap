@@ -6,7 +6,7 @@
 #    By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 15:50:22 by mmughedd          #+#    #+#              #
-#    Updated: 2023/12/26 13:00:28 by mmughedd         ###   ########.fr        #
+#    Updated: 2024/01/01 16:59:53 by mmughedd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,9 @@ CC = cc
 FLAGS = -Wextra -Werror -Wall -g
 
 RM = rm -f
+
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 

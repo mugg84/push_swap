@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:27:55 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/29 11:17:55 by mmughedd         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:17:48 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	solve_three(stack_list **stack_a)
 	int	second;
 	int	third;
 
-	while (!is_ordered(stack_a))
+	while (!is_ascending(stack_a))
 	{
 
 		first = (find_node(*stack_a, 0)->value);
