@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:23:54 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/01 16:58:48 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:05:38 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ int	main(int argc, char **argv)
 	create_stack(&stack_a, argc, argv);
 	// if (!is_ascending(&stack_a))
 	// 		solve_stack(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	//solve_stack(&stack_a, &stack_b);
-	calc_cost(stack_a, stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	solve_stack(&stack_a, &stack_b);
+	//calc_cost(stack_a, stack_b);
 	printf("stack_a\n");
 	loop(stack_a);
 	printf("stack_b\n");

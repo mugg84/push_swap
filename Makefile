@@ -6,7 +6,7 @@
 #    By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 15:50:22 by mmughedd          #+#    #+#              #
-#    Updated: 2024/01/01 16:59:53 by mmughedd         ###   ########.fr        #
+#    Updated: 2024/01/02 10:08:58 by mmughedd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LIBFT_LIB = './libft/libft.a'
 
 CC = cc
 
-FLAGS = -Wextra -Werror -Wall -g
+FLAGS = -g #-Wextra -Werror -Wall
 
 RM = rm -f
 

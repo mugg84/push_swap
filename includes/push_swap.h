@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:24:02 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/01 16:48:23 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 09:19:41 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct z_list
 {
 	int				value;
 	int				index;
+	int				cost;
 	bool			median;
 	bool			is_biggest;
 	bool			is_smallest;
@@ -72,11 +73,15 @@ void	change_index(stack_list *stack, char add_sub);
 
 stack_list	*find_node(stack_list *stack, int index);
 
+stack_list	*find_cheapest(stack_list *stack);
+
 void	solve_four_five(stack_list **stack_a, stack_list **stack_b, int len);
 
 void	find_target(stack_list *node, stack_list *stack);
 
-void	calc_cost(stack_list *stack_a, stack_list *stack_b);
+void	calc_cost(stack_list *stack_a, stack_list *stack_b, int len);
+
+int	single_cost(int	index, bool median, int len);
 
 void	solve_big(stack_list **stack_a, stack_list **stack_b, int len);
 

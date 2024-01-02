@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 10:25:04 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/01 16:59:35 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:32:31 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,24 +178,140 @@ void	find_target(stack_list *node, stack_list *stack)
 	}
 }
 
-void	calc_cost(stack_list *stack_a, stack_list *stack_b)
+int	single_cost(int	index, bool median, int len)
 {
+	int	s_cost;
+
+	if (!median)
+		s_cost = index;
+	else
+		s_cost = len - index;
+	return (s_cost);
+}
+
+void	calc_cost(stack_list *stack_a, stack_list *stack_b, int len)
+{
+	int	cost_a;
+	int	cost_b;
+	int	tot_cost;
+
 	while (stack_a)
 	{
 		find_target(stack_a, stack_b);
-		//printf("value: %d, target: %d\n", stack_a->value, (stack_a->target)->value);
+		cost_a = single_cost(stack_a->index, stack_a->median, len);
+		cost_b = single_cost((stack_a->target)->index, (stack_a->target)->median, len);
+		if (stack_a->median != (stack_a->target)->median)
+			tot_cost = cost_a + cost_b;
+		else
+			if (cost_a > cost_b)
+				tot_cost = cost_a;
+			else
+				tot_cost = cost_b;
+		stack_a->cost = tot_cost;
+		//TODO: Double check
+		//printf("value: %d, cost_a: %d, target: %d, cost_b: %d, total: %d\n", stack_a->value, cost_a, (stack_a->target)->value, cost_b, tot_cost);
 		stack_a = stack_a->next;
 	}
+}
 
+
+stack_list	*find_cheapest(stack_list *stack)
+{
+	stack_list	*cheapest;
+
+	cheapest = stack;
+	while (stack)
+	{
+		if (stack->cost < cheapest->cost)
+			cheapest = stack;
+		stack = stack->next;
+	}
+	return (cheapest);
+}
+
+void	set_top_push(stack_list **s_a, stack_list **s_b, stack_list *cheap, stack_list *tar)
+{
+	if (cheap->median == tar->median)
+	{
+		if (!cheap->median)
+		{
+			while (cheap->index != 0 && tar->index != 0)
+			{
+				rotate(s_a);
+				rotate(s_b);
+				printf("rr\n");
+			}
+		}
+		else
+		{
+			while (cheap->index != 0 && tar->index != 0)
+			{
+				rev_rotate(s_a);
+				rev_rotate(s_b);
+				printf("rrr\n");
+			}
+		}
+	}
+	while (cheap->index != 0)
+	{
+		if (!cheap->median)
+		{
+			while (cheap->index != 0)
+			{
+				rotate(s_a);
+				printf("ra\n");
+			}
+		}
+		else
+		{
+			while (cheap->index != 0)
+			{
+				rev_rotate(s_a);
+				printf("rra\n");
+			}
+		}
+	}
+	while (tar->index != 0)
+	{
+		if (!tar->median)
+		{
+			while (tar->index != 0)
+			{
+				rotate(s_b);
+				printf("rb\n");
+			}
+		}
+		else
+		{
+			while (tar->index != 0)
+			{
+				rev_rotate(s_b);
+				printf("rrb\n");
+			}
+		}
+	}
+	push(s_a, s_b);
+	printf("pa\n");
 }
 
 void	solve_big(stack_list **stack_a, stack_list **stack_b, int len)
 {
-	calc_cost(*stack_a, *stack_b);
-	len = 0;
-	len += 1;
-	//if (!is_ascending(stack_a))
-	//	solve_three(stack_a);
+	stack_list	*cheapest;
+	stack_list	*target;
+
+	push(stack_a, stack_b);
+	push(stack_a, stack_b);
+	printf("pa\npa\n");
+	while (len > 3)
+	{
+		calc_cost(*stack_a, *stack_b, len);
+		cheapest = find_cheapest(*stack_a);
+		target = cheapest->target;
+		set_top_push(stack_a,stack_b ,cheapest, target);
+		len = stack_len(*stack_a);
+	}
+	if (!is_ascending(stack_a))
+		solve_three(stack_a);
 	//while (stack_b)
 	//	move_node(stack_b, stack_a);
 }
@@ -220,6 +336,7 @@ void	reset_data(stack_list *stack)
 		(stack)->is_smallest = false;
 		(stack)->median = is_median;
 		stack->target = NULL;
+		stack->cost = 0;
 		stack = (stack)->next;
 	}
 }

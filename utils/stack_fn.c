@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:26:29 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/01 16:48:17 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 08:25:40 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ stack_list	*create_node(char *value, int index, int len)
 	new_node->is_biggest = false;
 	new_node->is_smallest = false;
 	new_node->is_cheapest = false;
+	new_node->cost = 0;
 	return (new_node);
 }
 
