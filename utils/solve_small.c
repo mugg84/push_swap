@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:27:55 by mmughedd          #+#    #+#             */
-/*   Updated: 2023/12/30 11:17:48 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:22:10 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,9 @@ void	solve_three(stack_list **stack_a)
 		second = (find_node(*stack_a, 1)->value);
 		third = (find_node(*stack_a, 2)->value);
 		if ((first > second && second < third) || (first > second && second > third))
-		{
-			swap(stack_a);
-			printf("sa\n");
-		}
+			swap(stack_a, 'a');
 		else
-		{
-			rev_rotate(stack_a);
-			printf("rra\n");
-		}
+			rev_rotate(stack_a, 'a');
 	}
 }
 
@@ -49,32 +43,22 @@ void	solve_four_five(stack_list **stack_a, stack_list **stack_b, int len)
 		while (lowest_node->index)
 		{
 			if (lowest_ind <= 2)
-			{
-				printf("ra\n");
-				rotate(stack_a);
-			}
+				rotate(stack_a, 'a');
 			else
-			{
-				printf("rra\n");
-				rev_rotate(stack_a);
-			}
+				rev_rotate(stack_a, 'a');
 		}
-		push(stack_a, stack_b);
-		printf("pb\n");
+		push(stack_a, stack_b, 'b');
 		len = stack_len(*stack_a);
 	}
 	solve_three(stack_a);
 	while (*stack_b)
-	{
-		push(stack_b, stack_a);
-		printf("pa\n");
-	}
+		push(stack_b, stack_a, 'a');
 }
 
 void	solve_small(stack_list **stack_a, stack_list **stack_b, int len)
 {
 	if (len <= 2)
-		swap(stack_a);
+		swap(stack_a, 'a');
 	else if (len == 3)
 		solve_three(stack_a);
 	else

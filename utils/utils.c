@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 10:25:04 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/02 10:32:31 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:23:22 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,26 @@ int	is_ascending(stack_list **stack)
 	return (1);
 }
 
-int	is_descending(stack_list **stack)
-{
-	stack_list	*temp;
-	int	value1;
-	int	value2;
+// int	is_descending(stack_list **stack)
+// {
+// 	stack_list	*temp;
+// 	int	value1;
+// 	int	value2;
 
-	if (!*stack)
-		return (0);
-	temp = *stack;
-	while (temp)
-	{
-		value1 = temp->value;
-		temp = temp->next;
-		if (temp)
-			value2 = temp->value;
-		if (value1 < value2)
-			return (0);
-	}
-	return (1);
-}
+// 	if (!*stack)
+// 		return (0);
+// 	temp = *stack;
+// 	while (temp)
+// 	{
+// 		value1 = temp->value;
+// 		temp = temp->next;
+// 		if (temp)
+// 			value2 = temp->value;
+// 		if (value1 < value2)
+// 			return (0);
+// 	}
+// 	return (1);
+// }
 
 stack_list	*find_node(stack_list *stack, int index)
 {
@@ -135,22 +135,46 @@ void	change_index(stack_list *stack, char add_sub)
 		}
 }
 
-void	find_biggest_smallest(stack_list *stack, stack_list **biggest, stack_list **smallest)
+// void	find_biggest_smallest(stack_list *stack, stack_list **biggest, stack_list **smallest)
+// {
+// 	*biggest = stack;
+// 	*smallest = stack;
+// 	if (!stack)
+// 		return ;
+// 	while (stack && stack->value)
+// 	{
+// 		if ((stack)->value > (*biggest)->value)
+// 			(*biggest) = stack;
+// 		else if ((stack)->value < ((*smallest))->value)
+// 			(*smallest) = stack;
+// 		stack = (stack)->next;
+// 	}
+// }
+
+void	find_biggest(stack_list *stack, stack_list **biggest)
 {
 	*biggest = stack;
-	*smallest = stack;
 	if (!stack)
 		return ;
 	while (stack && stack->value)
 	{
 		if ((stack)->value > (*biggest)->value)
 			(*biggest) = stack;
-		else if ((stack)->value < ((*smallest))->value)
+		stack = (stack)->next;
+	}
+}
+
+void	find_smallest(stack_list *stack, stack_list **smallest)
+{
+	*smallest = stack;
+	if (!stack)
+		return ;
+	while (stack && stack->value)
+	{
+		if ((stack)->value < ((*smallest))->value)
 			(*smallest) = stack;
 		stack = (stack)->next;
 	}
-	(*biggest)->is_biggest = true;
-	(*smallest)->is_smallest = true;
 }
 
 void	find_target(stack_list *node, stack_list *stack)
@@ -161,7 +185,8 @@ void	find_target(stack_list *node, stack_list *stack)
 
 	if (!stack || !node)
 		return ;
-	find_biggest_smallest(stack, &biggest, &smallest);
+	find_biggest(stack, &biggest);
+	find_smallest(stack, &smallest);
 	if (node->value > biggest->value || node->value < smallest->value)
 		node->target = biggest;
 	else
@@ -208,12 +233,9 @@ void	calc_cost(stack_list *stack_a, stack_list *stack_b, int len)
 			else
 				tot_cost = cost_b;
 		stack_a->cost = tot_cost;
-		//TODO: Double check
-		//printf("value: %d, cost_a: %d, target: %d, cost_b: %d, total: %d\n", stack_a->value, cost_a, (stack_a->target)->value, cost_b, tot_cost);
 		stack_a = stack_a->next;
 	}
 }
-
 
 stack_list	*find_cheapest(stack_list *stack)
 {
@@ -233,75 +255,39 @@ void	set_top_push(stack_list **s_a, stack_list **s_b, stack_list *cheap, stack_l
 {
 	if (cheap->median == tar->median)
 	{
-		if (!cheap->median)
+		while (cheap->index != 0 && tar->index != 0)
 		{
-			while (cheap->index != 0 && tar->index != 0)
-			{
-				rotate(s_a);
-				rotate(s_b);
-				printf("rr\n");
-			}
-		}
-		else
-		{
-			while (cheap->index != 0 && tar->index != 0)
-			{
-				rev_rotate(s_a);
-				rev_rotate(s_b);
-				printf("rrr\n");
-			}
+			if (!cheap->median)
+				rotate_both(s_a, s_b);
+			else
+				rev_rotate_both(s_a, s_b);
 		}
 	}
 	while (cheap->index != 0)
 	{
 		if (!cheap->median)
-		{
-			while (cheap->index != 0)
-			{
-				rotate(s_a);
-				printf("ra\n");
-			}
-		}
+			rotate(s_a, 'a');
 		else
-		{
-			while (cheap->index != 0)
-			{
-				rev_rotate(s_a);
-				printf("rra\n");
-			}
-		}
+			rev_rotate(s_a, 'a');
 	}
 	while (tar->index != 0)
 	{
 		if (!tar->median)
-		{
-			while (tar->index != 0)
-			{
-				rotate(s_b);
-				printf("rb\n");
-			}
-		}
+			rotate(s_b, 'b');
 		else
-		{
-			while (tar->index != 0)
-			{
-				rev_rotate(s_b);
-				printf("rrb\n");
-			}
-		}
+			rev_rotate(s_b, 'b');
 	}
-	push(s_a, s_b);
-	printf("pa\n");
+	push(s_a, s_b, 'b');
 }
 
 void	solve_big(stack_list **stack_a, stack_list **stack_b, int len)
 {
 	stack_list	*cheapest;
 	stack_list	*target;
+	stack_list	*biggest;
 
-	push(stack_a, stack_b);
-	push(stack_a, stack_b);
-	printf("pa\npa\n");
+	push(stack_a, stack_b, 'b');
+	push(stack_a, stack_b, 'b');
 	while (len > 3)
 	{
 		calc_cost(*stack_a, *stack_b, len);
@@ -312,8 +298,57 @@ void	solve_big(stack_list **stack_a, stack_list **stack_b, int len)
 	}
 	if (!is_ascending(stack_a))
 		solve_three(stack_a);
-	//while (stack_b)
-	//	move_node(stack_b, stack_a);
+	while (*stack_b)
+		move_node(stack_b, stack_a);
+	find_biggest(*stack_a, &biggest);
+	while (!is_ascending(stack_a))
+	{
+		if (!biggest->median)
+			rotate(stack_a, 'a');
+		else
+			rev_rotate(stack_a, 'a');
+	}
+}
+
+void	smallest_big(stack_list *node, stack_list *stack)
+{
+	stack_list	*target;
+	stack_list	*smallest;
+	stack_list	*biggest;
+
+	if (!stack || !node)
+		return ;
+	find_biggest(stack, &biggest);
+	find_smallest(stack, &smallest);
+	if (node->value > biggest->value || node->value < smallest->value)
+		node->target = smallest;
+	else
+	{	while (stack->value < node->value)
+			stack = stack->next;
+		target = stack;
+		while (stack && stack->value)
+		{
+			if (stack->value > node->value && stack->value < target->value)
+				target = stack;
+			stack = stack->next;
+		}
+		node->target = target;
+	}
+}
+
+void	move_node(stack_list **stack_b, stack_list **stack_a)
+{
+	if (!*stack_a || !*stack_b)
+		return ;
+	smallest_big(*stack_b, *stack_a);
+	while (((*stack_b)->target)->index != 0)
+	{
+		if (!((*stack_b)->target)->median)
+			rotate(stack_a, 'a');
+		else
+			rev_rotate(stack_a, 'a');
+	}
+	push(stack_b, stack_a, 'a');
 }
 
 void	reset_data(stack_list *stack)
@@ -331,9 +366,6 @@ void	reset_data(stack_list *stack)
 		index = (stack)->index;
 		if (index != 0 && len <= index * 2)
 			is_median = true;
-		(stack)->is_biggest = false;
-		(stack)->is_cheapest = false;
-		(stack)->is_smallest = false;
 		(stack)->median = is_median;
 		stack->target = NULL;
 		stack->cost = 0;

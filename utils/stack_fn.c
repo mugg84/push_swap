@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:26:29 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/02 08:25:40 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 11:59:43 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ stack_list	*create_node(char *value, int index, int len)
 	new_node->median = is_median;
 	new_node->next = NULL;
 	new_node->target = NULL;
-	new_node->is_biggest = false;
-	new_node->is_smallest = false;
-	new_node->is_cheapest = false;
 	new_node->cost = 0;
 	return (new_node);
 }
@@ -74,7 +71,13 @@ void	create_stack(stack_list **stack_a, int argc, char **argv)
 	init_stack(stack_a, args, i, len);
 }
 
-void	swap(stack_list **stack)
+void	print_move(char *move, char a_or_b)
+{
+	if (a_or_b)
+		printf("%s%c\n", move, a_or_b);
+}
+
+void	swap(stack_list **stack, char a_or_b)
 {
 	stack_list	*first;
 	stack_list	*second;
@@ -90,9 +93,10 @@ void	swap(stack_list **stack)
 	first->index = 1;
 	*stack = second;
 	(*stack)->next = first;
+	print_move("s", a_or_b);
 }
 
-void	push(stack_list **stack1, stack_list **stack2)
+void	push(stack_list **stack1, stack_list **stack2, char a_or_b)
 {
 	stack_list	*temp;
 
@@ -109,9 +113,10 @@ void	push(stack_list **stack1, stack_list **stack2)
 	change_index(*stack1, '-');
 	reset_data(*stack1);
 	reset_data(*stack2);
+	print_move("p", a_or_b);
 }
 
-void	rotate(stack_list **stack)
+void	rotate(stack_list **stack, char a_or_b)
 {
 	stack_list	*head;
 	stack_list	*last;
@@ -130,9 +135,10 @@ void	rotate(stack_list **stack)
 	change_index(*stack, '-');
 	last = find_node(*stack, len - 1);
 	last->index = len - 1;
+	print_move("r", a_or_b);
 }
 
-void	rev_rotate(stack_list **stack)
+void	rev_rotate(stack_list **stack, char a_or_b)
 {
 	stack_list	*second_last;
 	stack_list	*last;
@@ -150,4 +156,26 @@ void	rev_rotate(stack_list **stack)
 	second_last->next = NULL;
 	change_index(*stack, '+');
 	(*stack)->index = 0;
+	print_move("rr", a_or_b);
+}
+
+void	swap_both(stack_list **stack1, stack_list **stack2)
+{
+	swap(stack1, 0);
+	swap(stack2, 0);
+	print_move("ss", 0);
+}
+
+void	rotate_both(stack_list **stack1, stack_list **stack2)
+{
+	rotate(stack1, 0);
+	rotate(stack2, 0);
+	print_move("rr", 0);
+}
+
+void	rev_rotate_both(stack_list **stack1, stack_list **stack2)
+{
+	rev_rotate(stack1, 0);
+	rev_rotate(stack2, 0);
+	print_move("rrr", 0);
 }

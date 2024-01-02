@@ -63,7 +63,7 @@ int	check_args(int argc, char **argv)
 
 	if (argc == 1)
 	{
-			ft_putstr_fd("ERROR\n", 1);
+			ft_putstr_fd("Error\n", 1);
 			return (0);
 	};
 	i = 0;
@@ -78,7 +78,7 @@ int	check_args(int argc, char **argv)
 	{
 		if (!is_digit(args[i]) || !is_int(args[i]) || !is_unique(args, i))
 		{
-			ft_putstr_fd("ERROR\n", 1);
+			ft_putstr_fd("Error\n", 1);
 			return (0);
 		};
 		i++;

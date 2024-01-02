@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:24:02 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/02 09:19:41 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:12:05 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ typedef struct z_list
 	int				index;
 	int				cost;
 	bool			median;
-	bool			is_biggest;
-	bool			is_smallest;
-	bool			is_cheapest;
 	struct z_list	*next;
 	struct z_list	*target;
 } stack_list;
@@ -51,17 +48,19 @@ int	is_ascending(stack_list **stack);
 
 int	is_descending(stack_list **stack);
 
-void	swap(stack_list **stack);
+void	swap(stack_list **stack, char a_or_b);
 
-void	push(stack_list **stack1, stack_list **stack2);
+void	push(stack_list **stack1, stack_list **stack2, char a_or_b);
 
-void	rotate(stack_list **stack);
+void	rotate(stack_list **stack, char a_or_b);
 
-void	rev_rotate(stack_list **stack);
+void	rev_rotate(stack_list **stack, char a_or_b);
 
 void	solve_stack(stack_list **stack_a, stack_list **stack_b);
 
 int	stack_len(stack_list *stack);
+
+void	print_move(char *move, char a_or_b);
 
 void	solve_small(stack_list **stack_a, stack_list **stack_b, int len);
 
@@ -87,6 +86,21 @@ void	solve_big(stack_list **stack_a, stack_list **stack_b, int len);
 
 void	reset_data(stack_list *stack);
 
-void	find_biggest_smallest(stack_list *stack, stack_list **biggest, stack_list **smallest);
+void	find_biggest(stack_list *stack, stack_list **biggest);
+
+void	find_smallest(stack_list *stack, stack_list **smafind_smallest);
+
+void	swap_both(stack_list **stack1, stack_list **stack2);
+
+void	rotate_both(stack_list **stack1, stack_list **stack2);
+
+void	rev_rotate_both(stack_list **stack1, stack_list **stack2);
+
+void	move_node(stack_list **stack_a, stack_list **stack_b);
+
+void	smallest_big(stack_list *node, stack_list *stack);
+
+//TODO: delete
+void	loop(stack_list *a);
 
 #endif
