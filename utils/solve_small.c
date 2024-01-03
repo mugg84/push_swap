@@ -6,13 +6,13 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:27:55 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/02 13:22:10 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:28:44 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	solve_three(stack_list **stack_a)
+void	solve_three(t_stack **stack_a)
 {
 	int	first;
 	int	second;
@@ -20,21 +20,21 @@ void	solve_three(stack_list **stack_a)
 
 	while (!is_ascending(stack_a))
 	{
-
 		first = (find_node(*stack_a, 0)->value);
 		second = (find_node(*stack_a, 1)->value);
 		third = (find_node(*stack_a, 2)->value);
-		if ((first > second && second < third) || (first > second && second > third))
+		if ((first > second && second < third)
+			|| (first > second && second > third))
 			swap(stack_a, 'a');
 		else
 			rev_rotate(stack_a, 'a');
 	}
 }
 
-void	solve_four_five(stack_list **stack_a, stack_list **stack_b, int len)
+void	solve_five(t_stack **stack_a, t_stack **stack_b, int len)
 {
-	int	lowest_ind;
-	stack_list	*lowest_node;
+	int		lowest_ind;
+	t_stack	*lowest_node;
 
 	while (len > 3)
 	{
@@ -55,13 +55,12 @@ void	solve_four_five(stack_list **stack_a, stack_list **stack_b, int len)
 		push(stack_b, stack_a, 'a');
 }
 
-void	solve_small(stack_list **stack_a, stack_list **stack_b, int len)
+void	solve_small(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	if (len <= 2)
 		swap(stack_a, 'a');
 	else if (len == 3)
 		solve_three(stack_a);
 	else
-		solve_four_five(stack_a, stack_b, len);
+		solve_five(stack_a, stack_b, len);
 }
-

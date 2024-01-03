@@ -6,13 +6,13 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:23:54 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/03 12:42:31 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:33:35 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	solve_stack(stack_list **stack_a, stack_list **stack_b)
+void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
 
@@ -23,7 +23,7 @@ void	solve_stack(stack_list **stack_a, stack_list **stack_b)
 		solve_big(stack_a, stack_b, len);
 }
 
-void	loop(stack_list *a)
+void	loop(t_stack *a) //TODO: to delete before submitting
 {
 	while (a)
 	{
@@ -34,18 +34,16 @@ void	loop(stack_list *a)
 
 int	main(int argc, char **argv)
 {
-	stack_list	*stack_a = {NULL};
-	stack_list	*stack_b = {NULL};
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (!check_args(argc, argv))
 		return (0);
+	stack_a = NULL;
+	stack_b = NULL;
 	create_stack(&stack_a, argc, argv);
 	if (!is_ascending(&stack_a))
-			solve_stack(&stack_a, &stack_b);
-	// printf("stack_a\n");
-	// loop(stack_a);
-	// printf("stack_b\n");
-	// loop(stack_b);
+		push_swap(&stack_a, &stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);
