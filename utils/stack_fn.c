@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:26:29 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/02 11:59:43 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/03 12:38:36 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,19 +163,19 @@ void	swap_both(stack_list **stack1, stack_list **stack2)
 {
 	swap(stack1, 0);
 	swap(stack2, 0);
-	print_move("ss", 0);
+	print_move("s", 's');
 }
 
 void	rotate_both(stack_list **stack1, stack_list **stack2)
 {
 	rotate(stack1, 0);
 	rotate(stack2, 0);
-	print_move("rr", 0);
+	print_move("r", 'r');
 }
 
 void	rev_rotate_both(stack_list **stack1, stack_list **stack2)
 {
 	rev_rotate(stack1, 0);
 	rev_rotate(stack2, 0);
-	print_move("rrr", 0);
+	print_move("rr", 'r');
 }
