@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:57:38 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/03 14:26:29 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:15:01 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	find_biggest(t_stack *stack, t_stack **biggest)
 	*biggest = stack;
 	if (!stack)
 		return ;
-	while (stack && stack->value)
+	while (stack)
 	{
 		if ((stack)->value > (*biggest)->value)
 			(*biggest) = stack;
@@ -60,7 +60,7 @@ void	find_smallest(t_stack *stack, t_stack **smallest)
 	*smallest = stack;
 	if (!stack)
 		return ;
-	while (stack && stack->value)
+	while (stack)
 	{
 		if ((stack)->value < ((*smallest))->value)
 			(*smallest) = stack;

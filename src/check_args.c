@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:26:59 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/03 14:15:11 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:17:03 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_args(int argc, char **argv)
 	char	**args;
 	int		i;
 
-	if (argc == 1 || ft_strncmp(argv[1], "", 1) == 0)
+	if (argc == 1 || !ft_strncmp(argv[1], "", 1))
 		return (0); //TODO: check if empty input no error message
 	i = 0;
 	if (argc == 2)
@@ -72,7 +72,8 @@ int	check_args(int argc, char **argv)
 	}
 	while (args[i])
 	{
-		if (!is_digit(args[i]) || !is_int(args[i]) || !is_unique(args, i))
+		if (!is_digit(args[i]) || !is_int(args[i]) || !is_unique(args, i)
+			|| (ft_strlen(args[i]) == 1 && !ft_strncmp(args[i], "-", 1)))
 		{
 			write(STDERR_FILENO, "Error\n", 6);
 			return (0);

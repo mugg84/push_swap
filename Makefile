@@ -6,13 +6,14 @@
 #    By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 15:50:22 by mmughedd          #+#    #+#              #
-#    Updated: 2024/01/03 14:12:42 by mmughedd         ###   ########.fr        #
+#    Updated: 2024/01/04 11:34:02 by mmughedd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c check_args.c
 
 UTILS = utils.c stack_fn.c solve_small.c finders.c solve_big.c rotate.c rev_rotate.c swap.c push.c cost.c
+
 SRC_PATH = src/
 
 UTILS_PATH = utils/
@@ -31,7 +32,7 @@ LIBFT_LIB = './libft/libft.a'
 
 CC = cc
 
-FLAGS = -Wextra -Werror -Wall
+FLAGS = -Wextra -Werror -Wall -g
 
 RM = rm -f
 

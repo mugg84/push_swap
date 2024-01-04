@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:24:02 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/03 14:49:57 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:56:41 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ void	smallest_big(t_stack *node, t_stack *stack);
 void	move_node(t_stack **stack_a, t_stack **stack_b, int len);
 
 //TODO: delete
-void	loop(t_stack *a);
+void	loop(t_stack *a, t_stack *b);
 
 #endif
