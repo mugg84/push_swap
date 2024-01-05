@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 10:25:04 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/04 13:24:32 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/05 13:28:58 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_move(char *move, char a_or_b)
 {
 	if (a_or_b)
-		printf("%s%c\n", move, a_or_b);
+		ft_printf("%s%c\n", move, a_or_b);
 }
 
 int	is_ascending(t_stack **stack)

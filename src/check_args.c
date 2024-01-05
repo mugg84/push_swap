@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:26:59 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/04 14:17:03 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/05 13:52:25 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_args(int argc, char **argv)
 	int		i;
 
 	if (argc == 1 || !ft_strncmp(argv[1], "", 1))
-		return (0); //TODO: check if empty input no error message
+		return (0);
 	i = 0;
 	if (argc == 2)
 		args = ft_split(argv[1], ' ');
