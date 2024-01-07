@@ -6,7 +6,7 @@
 /*   By: mmughedd <mmughedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:57:38 by mmughedd          #+#    #+#             */
-/*   Updated: 2024/01/04 14:15:01 by mmughedd         ###   ########.fr       */
+/*   Updated: 2024/01/07 09:41:42 by mmughedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	find_target(t_stack *node, t_stack *stack)
 		while (stack->value > node->value)
 			stack = stack->next;
 		target = stack;
-		while (stack && stack->value)
+		while (stack)
 		{
 			if (stack->value < node->value && stack->value > target->value)
 				target = stack;
