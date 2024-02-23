@@ -80,7 +80,7 @@ void	solve_five(t_stack **stack_a, t_stack **stack_b, int len);
 
 void	find_target(t_stack *node, t_stack *stack);
 
-void	calc_cost(t_stack *stack_a, t_stack *stack_b, int len);
+void	calc_cost(t_stack *s_a, t_stack *s_b, int len_a, int len_b);
 
 void	solve_big(t_stack **stack_a, t_stack **stack_b, int len);
 
@@ -100,6 +100,6 @@ void	move_back(t_stack **stack_a, t_stack **stack_b);
 
 void	smallest_big(t_stack *node, t_stack *stack);
 
-void	move_node(t_stack **stack_a, t_stack **stack_b, int len);
+void	move_node(t_stack **stack_a, t_stack **stack_b);
 
 #endif

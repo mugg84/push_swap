@@ -23,18 +23,18 @@ int	cost(int index, bool median, int len)
 	return (s_cost);
 }
 
-void	calc_cost(t_stack *stack_a, t_stack *stack_b, int len)
+void	calc_cost(t_stack *s_a, t_stack *s_b, int len_a, int len_b)
 {
 	int	cost_a;
 	int	cost_b;
 	int	tot_cost;
 
-	while (stack_a)
+	while (s_a)
 	{
-		find_target(stack_a, stack_b);
-		cost_a = cost(stack_a->index, stack_a->median, len);
-		cost_b = cost((stack_a->target)->index, (stack_a->target)->median, len);
-		if (stack_a->median != (stack_a->target)->median)
+		find_target(s_a, s_b);
+		cost_a = cost(s_a->index, s_a->median, len_a);
+		cost_b = cost((s_a->target)->index, (s_a->target)->median, len_b);
+		if (s_a->median != (s_a->target)->median)
 			tot_cost = cost_a + cost_b;
 		else
 		{
@@ -43,8 +43,8 @@ void	calc_cost(t_stack *stack_a, t_stack *stack_b, int len)
 			else
 				tot_cost = cost_b;
 		}
-		stack_a->cost = tot_cost;
-		stack_a = stack_a->next;
+		s_a->cost = tot_cost;
+		s_a = s_a->next;
 	}
 }
 

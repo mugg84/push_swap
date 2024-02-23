@@ -41,12 +41,16 @@ void	set_top_push(t_stack **s_a, t_stack **s_b, t_stack *cheap, t_stack *tar)
 	push(s_a, s_b, 'b');
 }
 
-void	move_node(t_stack **stack_a, t_stack **stack_b, int len)
+void	move_node(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*cheapest;
 	t_stack	*target;
+	int		len_a;
+	int		len_b;
 
-	calc_cost(*stack_a, *stack_b, len);
+	len_a = stack_len(*stack_a);
+	len_b = stack_len(*stack_b);
+	calc_cost(*stack_a, *stack_b, len_a, len_b);
 	cheapest = find_cheapest(*stack_a);
 	target = cheapest->target;
 	set_top_push(stack_a, stack_b, cheapest, target);
@@ -60,7 +64,7 @@ void	solve_big(t_stack **stack_a, t_stack **stack_b, int len)
 	push(stack_a, stack_b, 'b');
 	while (len > 3)
 	{
-		move_node(stack_a, stack_b, len);
+		move_node(stack_a, stack_b);
 		len = stack_len(*stack_a);
 	}
 	if (!is_ascending(stack_a))
